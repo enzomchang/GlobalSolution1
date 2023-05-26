@@ -1,0 +1,114 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap');
+  </style>
+
+<!doctype html>
+<html>
+
+    <head>
+        <!-- Metadados -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="formulario.css" media="screen">
+
+        <!-- Título da página (aparece na aba) -->
+        <title>Despesas de Água</title>
+    </head>
+
+    <body>  
+
+        <!-- Cabeçalho com título e subtítulo (ambos com css de id "titulo") -->
+        <div>
+            <h1 id="titulo">Cadastro de Despesas</h1>
+            <p id="subtitulo"><u>Complete com as suas informações</u></p>
+            <br>
+        </div>
+
+        <!-- Início do formulário -->
+        <form>
+
+            <fieldset class="grupo">
+                <!-- Campo do nome com legenda "nome" e css de classe "campo" -->
+                <div class="campo">
+                    <label for="nome"><strong>Nome</strong></label>
+                    <input type="text" name="nome" id="nome" required>
+                </div>
+
+                <!-- Campo do sobrenome com legenda "sobrenome" e css de classe "campo" -->
+                <div class="campo">
+                    <label for="sobrenome"><strong>Sobrenome</strong></label>
+                    <input type="text" name="sobrenome" id="sobrenome" required>
+                </div>
+            </fieldset> 
+
+            <!-- Campo de email com-->
+            <div class="campo">
+                <label for="email"><strong>Email</strong></label>
+                <input type="email" name="email" id="email" required>
+            </div>
+
+            <!-- Campo de desenvolvimento web com 3 opções de botões selecionáveis (radio button) e css de classe "campo" -->
+            <div class="campo">
+                <label><strong>Vai utilizar para uso doméstico e/ou corporativo?</strong></label>
+                <label>
+                    <input type="radio" name="devweb" value="frontend" checked>Doméstico
+                </label>
+                <label>
+                    <input type="radio" name="devweb" value="backend">Corporativo
+                </label>
+                <label>
+                    <input type="radio" name="devweb" value="fullstack">Ambos
+                </label>
+            </div>
+
+            <div class="campo">
+                <label for="date-input"><strong>Selecione a data:</strong></label>
+                <input type="date" id="date-input" class="datepicker" lang="pt">
+            </div>
+
+
+            <fieldset class="grupo">
+                <!-- Campo de tecnologias para escolha de 1 ou mais opções para marcar (checkbox) e css de classe "campo" -->
+                <div id="check">
+                    <label><strong>Selecione como você utilizou a água:</strong></label><br><br>
+                    <input type="checkbox" id="agua1" name="agua1" value="Consumo">
+                    <label for="agua1"><strong> Consumo</strong></label>
+                    <p id="comentario">(Despesas relacionadas a conta de água)</p>
+                    <input type="checkbox" id="agua2" name="agua2" value="Manutencao">
+                    <label for="agua2"><strong>Manutenção</strong></label>
+                    <p id="comentario"> (Despesas relacionadas à manutenção do sistema de água, como reparos em encanamentos, bombas, válvulas, entre outros).</p>
+                    <input type="checkbox" id="agua3" name="agua3" value="Equipamentos">
+                    <label for="agua3"><strong> Equipamentos</strong></label>
+                    <p id="comentario">(Despesas relacionadas à compra, substituição ou manutenção de equipamentos utilizados para o consumo de água, como filtros, torneiras, chuveiros, entre outros).</p>
+                    <input type="checkbox" id="agua4" name="agua4" value="Irrigacao">
+                    <label for="agua4"><strong> Irrigação</strong></label>
+                    <p id="comentario">(Despesas relacionadas à irrigação de jardins, gramados, plantações ou áreas verdes).</p>
+                    <input type="checkbox" id="agua5" name="agua5" value="Tratamento">
+                    <label for="agua5"><strong> Tratamento</strong></label>
+                    <p id="comentario"> (Despesas relacionadas ao tratamento da água, como a compra de produtos químicos para purificação, filtros, ou serviços de tratamento especializado).</p>
+                    <input type="checkbox" id="agua6" name="agua6" value="Projetos">
+                    <label for="agua6"><strong> Projetos e melhorias</strong></label>
+                    <p id="comentario">(Despesas relacionadas a projetos de melhoria no sistema de água, como a instalação de um sistema de captação de água da chuva, reuso de água, ou qualquer outra inovação visando a economia ou sustentabilidade).</p>
+                    <input type="checkbox" id="agua7" name="agua7" value="Outros">
+                    <label for="agua7"><strong> Outros</strong></label>
+                    <!-- Fazer uma opção "Outros" depois conte onde voce utilizou a agua: -->
+                </div>
+            </fieldset>
+
+            <!-- Caixa de texto -->
+            <div class="campo">
+                <br>
+                <label for="experiencia"><strong>Descrição detalhada da despesa(opcional): </strong></label>
+                <textarea rows="6" style="width: 26em" id="experiencia" name="experiencia"></textarea>
+            </div>
+
+        </form>
+     
+        <button class="botao" type="submit" onsubmit="">Cadastrar Despesas</button>            
+
+
+    </body>
+
+</html>
