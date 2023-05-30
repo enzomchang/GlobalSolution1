@@ -54,20 +54,23 @@ const getIncome = transactionAmounts => transactionAmounts
   .toFixed(2); //getIncome();
 
 // Método para exibir o soldo total
-const getTotal = transactionLitros
+const getTotal = transactionLiters => transactionLiters
+.filter(value => value > 0)
+.reduce((accumulator, value) => accumulator + value, 0)
 
 // Método de atualização das informações das transações
 const updateBalanceValues = () => {
     const transactionAmounts = transactions.map(({ amount }) => amount);
+    const transactionLiters = transactions.map(({ liters }) => liters);
     
-    const total = getTotal(transactionLitros);
+    const total = getTotal(transactionLiters);
     
     const income = getIncome(transactionAmounts);
     
     const expense = getExpenses(transactionAmounts);
     
   // Exibindo o soldo total no display
-    balanceDisplay.textContent = `R$ ${total}`;
+    balanceDisplay.textContent = `Ml ${total}`;
   // Exibindo o valor total das receitas no display
     incomeDisplay.textContent = `R$ ${income}`;
   // Exibindo o valor total despesas no display
@@ -93,11 +96,12 @@ const updateLocalStorage = () => {
 const generateID = () => Math.round(Math.random() * 1000);
 
 // Método para adicionar as transações no array
-const addToTransactionArray = (transactionName, transactionAmount) => {
+const addToTransactionArray = (transactionName, transactionAmount, transactionLiters) => {
     transactions.push({
     id: generateID(),
     name: transactionName,
-    amount: Number(transactionAmount)
+    amount: Number(transactionAmount),
+    liters: Number(transactionLiters)
     });
 } // addToTransactionArray();
 
@@ -105,6 +109,7 @@ const addToTransactionArray = (transactionName, transactionAmount) => {
 const clearInputs = () => {
     inputTransactionName.value = '';
     inputTransactionAmount.value = '';
+    inputTransactionLitros.value = '';
 } // clearInputs();
 
 // Método para adicionar os componentes do form
@@ -113,6 +118,7 @@ const handleFormSubmit = event => {
 
     const transactionName = inputTransactionName.value.trim();
     const transactionAmount = inputTransactionAmount.value.trim();
+    const transactionLiters = inputTransactionLitros.value.trim();
     const isSomeInputEmpty = transactionName === '' || transactionAmount === '';
 
   // Verificando se os inputs estão preenchidos
@@ -121,7 +127,7 @@ const handleFormSubmit = event => {
     return;
     }
     
-    addToTransactionArray(transactionName, transactionAmount);
+    addToTransactionArray(transactionName, transactionAmount, transactionLiters);
     init();
     updateLocalStorage();
     clearInputs();
