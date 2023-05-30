@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Controle de Água</title>
 </head>
 <body>
@@ -26,11 +27,29 @@
         </div>
     </div>
 
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Digite sua busca">
+        <button id="searchButton"><i class="fas fa-search"></i></button>
+    </div>
+
     <h3>Transações</h3>
     
     <ul id="transactions" class="transactions"></ul>
 
     <h3>Adicionar transação</h3>
+
+    <form>
+        <label for="residencial">
+        <input type="radio" id="residencial" name="tipo" value="residencial">
+        Residencial
+        </label>
+        <br>
+        <label for="comercial">
+        <input type="radio" id="comercial" name="tipo" value="comercial">
+        Comercial
+        </label>
+        <br>
+    </form>
     
     <form id="form">
         <div class="form-control">
@@ -39,8 +58,8 @@
         </div>
 
         <div class="form-control">
-            <label for="text">Gasto em Litros</label>
-            <input autofocus type="text" id="litros" placeholder="Valor em Ml" />
+            <label for="amount">Gasto em Litros</label>
+            <input autofocus type="number" id="liters" placeholder="Valor em Ml" />
             </div>
 
         <div class="form-control">

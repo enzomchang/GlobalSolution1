@@ -1,11 +1,13 @@
-const transactionUl = document.querySelector('#transactions');
-const incomeDisplay = document.querySelector('#money-plus');
-const expenseDisplay = document.querySelector('#money-minus');
-const balanceDisplay = document.querySelector('#balance');
-const form = document.querySelector('#form');
-const inputTransactionName = document.querySelector('#text');
-const inputTransactionLitros = document.querySelector('#litros');
-const inputTransactionAmount = document.querySelector('#amount');
+const transactionUl = document.querySelector ('#transactions');
+const incomeDisplay = document.querySelector ('#money-plus');
+const expenseDisplay = document.querySelector ('#money-minus');
+const balanceDisplay = document.querySelector ('#balance');
+const form = document.querySelector ('#form');
+const formResidencial = document.querySelector ('#residencial');
+const formComercial = document.querySelector ('#comercial');
+const inputTransactionName = document.querySelector ('#text');
+const inputTransactionLiters = document.querySelector ('#liters');
+const inputTransactionAmount = document.querySelector ('#amount');
 
 // Método para salvar as informações no localStorage
 const localStorageTransactions = JSON.parse(localStorage
@@ -54,7 +56,7 @@ const getIncome = transactionAmounts => transactionAmounts
   .toFixed(2); //getIncome();
 
 // Método para exibir o soldo total
-const getTotal = transactionLiters => transactionLiters
+const getTotal = transactionLiters =>  transactionLiters
 .filter(value => value > 0)
 .reduce((accumulator, value) => accumulator + value, 0)
 
@@ -109,7 +111,7 @@ const addToTransactionArray = (transactionName, transactionAmount, transactionLi
 const clearInputs = () => {
     inputTransactionName.value = '';
     inputTransactionAmount.value = '';
-    inputTransactionLitros.value = '';
+    inputTransactionLiters.value = '';
 } // clearInputs();
 
 // Método para adicionar os componentes do form
@@ -118,8 +120,8 @@ const handleFormSubmit = event => {
 
     const transactionName = inputTransactionName.value.trim();
     const transactionAmount = inputTransactionAmount.value.trim();
-    const transactionLiters = inputTransactionLitros.value.trim();
-    const isSomeInputEmpty = transactionName === '' || transactionAmount === '';
+    const transactionLiters = inputTransactionLiters.value.trim();
+    const isSomeInputEmpty = transactionName === '' || transactionAmount === '' || transactionLiters  === '';
 
   // Verificando se os inputs estão preenchidos
     if (isSomeInputEmpty) {
@@ -136,3 +138,4 @@ const handleFormSubmit = event => {
 
 // Método de observação de eventos no form
 form.addEventListener('submit', handleFormSubmit)
+
