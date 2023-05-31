@@ -8,6 +8,7 @@ const formComercial = document.querySelector ('#comercial');
 const inputTransactionName = document.querySelector ('#text');
 const inputTransactionLiters = document.querySelector ('#liters');
 const inputTransactionAmount = document.querySelector ('#amount');
+const searchInput = document.querySelector ('#searchInput');
 
 // Método para salvar as informações no localStorage
 const localStorageTransactions = JSON.parse(localStorage
@@ -72,7 +73,7 @@ const updateBalanceValues = () => {
     const expense = getExpenses(transactionAmounts);
     
   // Exibindo o soldo total no display
-    balanceDisplay.textContent = `Ml ${total}`;
+    balanceDisplay.textContent = `Ml ${total}`; 
   // Exibindo o valor total das receitas no display
     incomeDisplay.textContent = `R$ ${income}`;
   // Exibindo o valor total despesas no display
@@ -138,4 +139,11 @@ const handleFormSubmit = event => {
 
 // Método de observação de eventos no form
 form.addEventListener('submit', handleFormSubmit)
+
+  const filterTransactions = () => {
+    const searchInputValue = searchInput.value;
+    const filteredTransactions = transactions.filter(transaction => transaction.name.toLowerCase().match(searchInputValue.toLowerCase()));
+    transactionUl.innerHTML = '';
+    filteredTransactions.forEach(transaction => addTransactionIntoDOM(transaction));
+  }
 
