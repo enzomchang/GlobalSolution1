@@ -26,11 +26,24 @@ const removeTransaction = ID => {
 // Método de adicionar uma transação
 const addTransactionIntoDOM = ({ residencial, comercial, name, id }) => {
   // Obtendo o operador matemático
-    const operator = '-';
-    const CSSClass = 'minus';
-    const amountWithoutOperator = residencial !== 0 ? Math.abs(residencial) : Math.abs(comercial);
-    const li = document.createElement('li');
+const operator = '-';
+const CSSClass = 'minus';
+const amountWithoutOperator = residencial !== 0 ? Math.abs(residencial) : Math.abs(comercial);
 
+const li = document.createElement('li');
+const icon = document.createElement('i');
+
+// Ícone de fábrica para "comercial"
+if (CSSClass === 'minus' && amountWithoutOperator === comercial) {
+  icon.classList.add('fas', 'fa-industry');
+} 
+
+// Ícone de casa para "residencial"
+if (CSSClass === 'minus' && amountWithoutOperator === residencial) {
+  icon.classList.add('fas', 'fa-home');
+}
+
+  
     li.classList.add(CSSClass);
     li.innerHTML = 
     ` 
@@ -38,7 +51,8 @@ const addTransactionIntoDOM = ({ residencial, comercial, name, id }) => {
     <span>${operator} R$ ${amountWithoutOperator}</span>
     <button class="delete-btn" onClick="removeTransaction(${id})">x</button>
     `
-    transactionUl.append(li);  
+    transactionUl.append(li);
+    li.appendChild(icon);   
 } // addTranscationIntoDOM;
 
 // Método de recepimento de valores das despesas das transações
