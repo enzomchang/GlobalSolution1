@@ -85,9 +85,13 @@ const updateBalanceValues = () => {
     const income = getIncome(transactionResidencial);
     
     const expense = getIncome(transactionComercial);
+
+    const totalToDisplay = (total * 1000).toString().split('').reverse().map((num, i, arr) => {
+      return (i + 1) % 3 == 0 && arr.length > i + 1 ? `.${num}` : num;
+    }).reverse().join('');
     
   // Exibindo o soldo total no display
-    balanceDisplay.textContent = `Litros ${total * 1000 }`; 
+    balanceDisplay.textContent = `Litros ${totalToDisplay }`; 
   // Exibindo o valor total das receitas no display
     incomeDisplay.textContent = `R$ ${income}`;
   // Exibindo o valor total despesas no display
