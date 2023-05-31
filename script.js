@@ -3,12 +3,11 @@ const incomeDisplay = document.querySelector ('#money-plus');
 const expenseDisplay = document.querySelector ('#money-minus');
 const balanceDisplay = document.querySelector ('#balance');
 const form = document.querySelector ('#form');
-const formResidencial = document.querySelector ('#residencial');
-const formComercial = document.querySelector ('#comercial');
 const inputTransactionName = document.querySelector ('#text');
 const inputTransactionLiters = document.querySelector ('#liters');
 const inputTransactionAmount = document.querySelector ('#amount');
 const searchInput = document.querySelector ('#searchInput');
+
 
 // Método para salvar as informações no localStorage
 const localStorageTransactions = JSON.parse(localStorage
@@ -73,7 +72,7 @@ const updateBalanceValues = () => {
     const expense = getExpenses(transactionAmounts);
     
   // Exibindo o soldo total no display
-    balanceDisplay.textContent = `Ml ${total}`; 
+    balanceDisplay.textContent = `Litros ${total}`; 
   // Exibindo o valor total das receitas no display
     incomeDisplay.textContent = `R$ ${income}`;
   // Exibindo o valor total despesas no display
