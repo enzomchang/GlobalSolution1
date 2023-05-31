@@ -24,11 +24,11 @@ const removeTransaction = ID => {
 } // removeTransaction;
 
 // Método de adicionar uma transação
-const addTransactionIntoDOM = ({ amount, name, id }) => {
+const addTransactionIntoDOM = ({ residencial, comercial, name, id }) => {
   // Obtendo o operador matemático
-    const operator = amount < 0 ? '-' : '+';
-    const CSSClass = amount < 0 ? 'minus' : 'plus';
-    const amountWithoutOperator = Math.abs(amount);
+    const operator = '-';
+    const CSSClass = 'minus';
+    const amountWithoutOperator = residencial !== 0 ? Math.abs(residencial) : Math.abs(comercial);
     const li = document.createElement('li');
 
     li.classList.add(CSSClass);
@@ -43,7 +43,7 @@ const addTransactionIntoDOM = ({ amount, name, id }) => {
 
 // Método de recepimento de valores das despesas das transações
 const getExpenses = transactionAmounts => Math.abs(transactionAmounts
-    .filter(value => value < 0)
+    .filter(value => value > 0)
     .reduce((accumulator, value) => accumulator + value, 0))
   .toFixed(2); // getExpenses();
 
@@ -62,17 +62,18 @@ const getTotal = transactionLiters =>  transactionLiters
 
 // Método de atualização das informações das transações
 const updateBalanceValues = () => {
-    const transactionAmounts = transactions.map(({ amount }) => amount);
+    const transactionResidencial = transactions.map(({ residencial }) => residencial);
+    const transactionComercial = transactions.map(({ comercial }) => comercial);
     const transactionLiters = transactions.map(({ liters }) => liters);
     
     const total = getTotal(transactionLiters);
     
-    const income = getIncome(transactionAmounts);
+    const income = getIncome(transactionResidencial);
     
-    const expense = getExpenses(transactionAmounts);
+    const expense = getIncome(transactionComercial);
     
   // Exibindo o soldo total no display
-    balanceDisplay.textContent = `Litros ${total}`; 
+    balanceDisplay.textContent = `M³ ${total}`; 
   // Exibindo o valor total das receitas no display
     incomeDisplay.textContent = `R$ ${income}`;
   // Exibindo o valor total despesas no display
@@ -102,7 +103,8 @@ const addToTransactionArray = (transactionName, transactionAmount, transactionLi
     transactions.push({
     id: generateID(),
     name: transactionName,
-    amount: Number(transactionAmount),
+    residencial: document.querySelector('input[name="tipo"]:checked').value === 'residencial' ? Number(transactionAmount) : 0,
+    comercial: document.querySelector('input[name="tipo"]:checked').value !== 'residencial' ? Number(transactionAmount) : 0,
     liters: Number(transactionLiters)
     });
 } // addToTransactionArray();
@@ -121,7 +123,8 @@ const handleFormSubmit = event => {
     const transactionName = inputTransactionName.value.trim();
     const transactionAmount = inputTransactionAmount.value.trim();
     const transactionLiters = inputTransactionLiters.value.trim();
-    const isSomeInputEmpty = transactionName === '' || transactionAmount === '' || transactionLiters  === '';
+    const transactionType = document.querySelector('input[name="tipo"]:checked');
+    const isSomeInputEmpty = transactionName === '' || transactionAmount === '' || transactionLiters  === '' || transactionType === null;
 
   // Verificando se os inputs estão preenchidos
     if (isSomeInputEmpty) {
