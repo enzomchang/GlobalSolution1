@@ -73,7 +73,7 @@ const updateBalanceValues = () => {
     const expense = getIncome(transactionComercial);
     
   // Exibindo o soldo total no display
-    balanceDisplay.textContent = `M³ ${total}`; 
+    balanceDisplay.textContent = `Litros ${total * 1000 }`; 
   // Exibindo o valor total das receitas no display
     incomeDisplay.textContent = `R$ ${income}`;
   // Exibindo o valor total despesas no display
